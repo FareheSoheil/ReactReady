@@ -5,6 +5,7 @@ var DIST_DIR = path.resolve(__dirname,"dist");
 var SRC_DIR = path.resolve(__dirname,"src");
 
 var config = {
+
     entry: SRC_DIR  + "/app/index.js", //main entry file 
     output: {
         path: DIST_DIR + "/app", 
@@ -13,6 +14,7 @@ var config = {
     },
     module: { // for transpiling ES6 to ES5 , no need if you're writing ES5 or raw css , js and html
         rules: [ //each loader is like a js object
+            // for translating ES6 to ES5
             {
                 //which file should webpack look for , to translate it with traslators (like babel in this project) 
                 //because we are using ES6 , it should test every js file => we use Reqular expression
@@ -27,9 +29,17 @@ var config = {
                     presets:["react","es2015","stage-2"]
                 }
                 
-            }
+            },
+            // for parsing css files
+            {
+                test: /\.css$/, 
+                include: SRC_DIR, 
+                exclude: /node_modules/,  
+                loader: ['style-loader', 'css-loader'],
+           }
         ] 
-    }
+    },
+    mode: "development" 
 };
 
 module.exports = config;
