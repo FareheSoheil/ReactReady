@@ -6,3 +6,6 @@ then write this : npm start
 
 open your browers and type "http://localhost:8080"
 
+
+indes-old.html was created manually in the previous commit when
+I hadn't used "html-webpack-plugin"
